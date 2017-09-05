@@ -1,5 +1,5 @@
-FROM ubuntu:trusty
-MAINTAINER Ovais Tariq @ovaistariq
+FROM ubuntu:xenial
+MAINTAINER dev@twindb.com
 
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
