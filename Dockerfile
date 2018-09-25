@@ -1,4 +1,4 @@
-FROM ubuntu:xenial
+FROM ubuntu:bionic
 MAINTAINER dev@twindb.com
 
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
@@ -29,8 +29,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
         libgcrypt11-dev \
         libev-dev \
         vim-common
+# 37.191.226.104 is keys.gnupg.net
+RUN gpg --keyserver hkp://37.191.226.104 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 
-RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 RUN curl -sSL https://get.rvm.io | bash -s stable
 
 RUN bash -lc "rvm requirements; \
