@@ -34,11 +34,11 @@ RUN gpg2 --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462
 RUN curl -sSL https://get.rvm.io | bash -s stable
 
 RUN bash -lc "rvm requirements; \
-        rvm install 2.6.1 ; \
+        rvm install 2.5.3 ; \
         gem install bundler;\
         "
 
-RUN rm -rf /usr/local/rvm/src/ruby-2.6.1
+RUN rm -rf /usr/local/rvm/src/ruby-*
 
 RUN git clone https://github.com/twindb/backup.git /tmp/backup
 RUN bash -lc "cd /tmp/backup/omnibus; bundle update; bundle install --binstubs"
