@@ -44,7 +44,4 @@ RUN bash -lc "rvm requirements; \
 
 RUN rm -rf /usr/local/rvm/src/ruby-*
 
-RUN git clone https://github.com/twindb/backup.git /tmp/backup
-RUN bash -lc "cd /tmp/backup/omnibus;bundle install --binstubs"
-
 CMD /bin/bash -l
