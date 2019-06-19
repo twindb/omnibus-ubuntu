@@ -30,6 +30,14 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
         libev-dev \
         vim-common
 
+# For gcc version 7
+RUN apt-get install -y software-properties-common
+RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
+RUN apt update || apt update
+RUN apt -y install g++-7
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 60 --slave /usr/bin/g++ g++ /usr/bin/g++-7
+RUN update-alternatives --config gcc
+
 RUN apt-get -y install python-pip python-dev
 RUN pip install awscli
 
@@ -42,12 +50,11 @@ RUN curl -sSL https://get.rvm.io | bash -s stable
 
 RUN bash -lc "rvm requirements; \
         rvm install 2.6.1 ; \
-        gem install bundler;\
+        gem install bundler; \
+        rm -rf /usr/local/rvm/src/ruby-* ; \
         "
 
-RUN rm -rf /usr/local/rvm/src/ruby-*
-
-RUN git clone https://github.com/twindb/backup.git /tmp/backup
-RUN bash -lc "cd /tmp/backup/omnibus; bundle install --binstubs"
+COPY Gemfile.lock Gemfile /tmp/
+RUN bash -lc "cd /tmp/; bundle install --binstubs"
 
 CMD /bin/bash -l
