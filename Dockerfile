@@ -28,7 +28,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
         libncurses-dev \
         libgcrypt11-dev \
         libev-dev \
-        vim-common
+        vim-common \
+        unzip
 
 COPY gpg/409B6B1796C275462A1703113804BB82D39DC0E3.txt /tmp/409B6B1796C275462A1703113804BB82D39DC0E3.txt
 COPY gpg/7D2BAF1CF37B13E2069D6956105BD0E739499BDB.txt /tmp/7D2BAF1CF37B13E2069D6956105BD0E739499BDB.txt
