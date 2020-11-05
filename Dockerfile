@@ -1,4 +1,4 @@
-FROM ubuntu:cosmic
+FROM ubuntu:focal
 MAINTAINER dev@twindb.com
 
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
@@ -26,7 +26,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
         libaio-dev \
         mysql-client \
         libncurses-dev \
-        libgcrypt11-dev \
+        libgcrypt20-dev \
         libev-dev \
         vim-common \
         unzip
