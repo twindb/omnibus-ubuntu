@@ -1,7 +1,5 @@
-FROM ubuntu:focal
+FROM ubuntu:jammy
 MAINTAINER dev@twindb.com
-
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
@@ -29,20 +27,12 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
         libgcrypt20-dev \
         libev-dev \
         vim-common \
-        unzip
+        unzip \
+        ruby \
+        ruby-dev \
+        ruby-bundler \
+        pkgconf
 
-COPY gpg/409B6B1796C275462A1703113804BB82D39DC0E3.txt /tmp/409B6B1796C275462A1703113804BB82D39DC0E3.txt
-COPY gpg/7D2BAF1CF37B13E2069D6956105BD0E739499BDB.txt /tmp/7D2BAF1CF37B13E2069D6956105BD0E739499BDB.txt
-RUN gpg2 --import /tmp/7D2BAF1CF37B13E2069D6956105BD0E739499BDB.txt
-RUN gpg2 --import /tmp/409B6B1796C275462A1703113804BB82D39DC0E3.txt
-
-RUN curl -sSL https://get.rvm.io | bash -s stable
-
-RUN bash -lc "rvm requirements; \
-        rvm install 2.6.1 ; \
-        gem install bundler;\
-        "
-
-RUN rm -rf /usr/local/rvm/src/ruby-*
+RUN gem install omnibus
 
 CMD /bin/bash -l
