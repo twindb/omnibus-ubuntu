@@ -28,11 +28,12 @@ jobs:
             - name: "Install Docker"
               if: "${{matrix.os == 'macos-14'}}"
               run: |
-                wget -q https://desktop.docker.com/mac/main/arm64/Docker.dmg
-                sudo hdiutil attach Docker.dmg
-                sudo /Volumes/Docker/Docker.app/Contents/MacOS/install --accept-license
-                sudo hdiutil detach /Volumes/Docker
-                echo "/Applications/Docker.app/Contents/Resources/bin" >> $GITHUB_PATH
+                echo "do nothing"
+#                wget -q https://desktop.docker.com/mac/main/arm64/Docker.dmg
+#                sudo hdiutil attach Docker.dmg
+#                sudo /Volumes/Docker/Docker.app/Contents/MacOS/install --accept-license
+#                sudo hdiutil detach /Volumes/Docker
+#                echo "/Applications/Docker.app/Contents/Resources/bin" >> $GITHUB_PATH
 
             - name: "Setup tmate session"
               uses: "mxschmitt/action-tmate@v3"
