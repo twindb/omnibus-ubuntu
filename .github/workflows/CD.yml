@@ -32,7 +32,7 @@ jobs:
                 sudo /Volumes/Docker/Docker.app/Contents/MacOS/install --accept-license
                 sudo hdiutil detach /Volumes/Docker
                 echo "/Applications/Docker.app/Contents/Resources/bin" >> $GITHUB_PATH
-                open /Applications/Docker.app
+                sudo -i open /Applications/Docker.app
 
             - name: "Setup tmate session"
               uses: "mxschmitt/action-tmate@v3"
