@@ -9,7 +9,11 @@ on:  # yamllint disable-line rule:truthy
 jobs:
     push_to_registry:
         name: "Push Docker image to Docker Hub"
-        runs-on: ubuntu-latest
+        runs-on: ${{matrix.os}}
+        strategy:
+            matrix:
+                os: ["ubuntu-latest", "macos-14"]
+
         steps:
             - name: Check out the repo
               uses: actions/checkout@v4
@@ -26,7 +30,8 @@ jobs:
                   username: ${{ secrets.DOCKER_USERNAME }}
                   password: ${{ secrets.DOCKER_PASSWORD }}
 
-            - name: "Buld and push the image"
+            - name: "Build and push the image"
               run: |
-                docker build -t twindb/omnibus-ubuntu:${{ steps.extract_branch.outputs.branch }} .
-                docker push -t twindb/omnibus-ubuntu:${{ steps.extract_branch.outputs.branch }}
+                ARCH=$(uname -m)
+                docker build -t twindb/omnibus-ubuntu:${{ steps.extract_branch.outputs.branch }}-${ARCH} .
+                docker push twindb/omnibus-ubuntu:${{ steps.extract_branch.outputs.branch }}-${ARCH}
