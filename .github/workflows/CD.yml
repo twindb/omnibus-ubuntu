@@ -12,7 +12,8 @@ jobs:
         runs-on: ${{matrix.os}}
         strategy:
             matrix:
-                os: ["ubuntu-latest", "macos-14"]
+                # os: ["ubuntu-latest", "macos-14"]
+                os: ["macos-14"]
 
         steps:
             - name: Check out the repo
@@ -32,7 +33,6 @@ jobs:
                 sudo /Volumes/Docker/Docker.app/Contents/MacOS/install --accept-license
                 sudo hdiutil detach /Volumes/Docker
                 echo "/Applications/Docker.app/Contents/Resources/bin" >> $GITHUB_PATH
-                sudo -i open /Applications/Docker.app
 
             - name: "Setup tmate session"
               uses: "mxschmitt/action-tmate@v3"
