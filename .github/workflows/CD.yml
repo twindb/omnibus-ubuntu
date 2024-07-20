@@ -33,4 +33,6 @@ jobs:
               run: |
                 ARCH=$(uname -m)
                 docker build -t twindb/omnibus-ubuntu:${{ steps.extract_branch.outputs.branch }}-${ARCH} .
+                docker build -t twindb/omnibus-ubuntu:${{ steps.extract_branch.outputs.branch }} .
                 docker push twindb/omnibus-ubuntu:${{ steps.extract_branch.outputs.branch }}-${ARCH}
+                docker push twindb/omnibus-ubuntu:${{ steps.extract_branch.outputs.branch }}
