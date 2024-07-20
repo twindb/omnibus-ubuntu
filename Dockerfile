@@ -1,4 +1,4 @@
-FROM ubuntu:jammy
+FROM ubuntu:noble
 MAINTAINER dev@twindb.com
 
 RUN apt-get update
@@ -31,7 +31,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
         ruby \
         ruby-dev \
         ruby-bundler \
-        pkgconf
+        pkgconf && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN gem install omnibus
 
