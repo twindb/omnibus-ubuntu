@@ -24,6 +24,14 @@ jobs:
               run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
               id: extract_branch
 
+            - name: "Install Docker"
+              if: "${{matrix.os == 'macos-14'}}"
+              run: |
+                wget https://desktop.docker.com/mac/main/arm64/Docker.dmg
+                sudo hdiutil attach Docker.dmg
+                sudo /Volumes/Docker/Docker.app/Contents/MacOS/install --accept-license
+                sudo hdiutil detach /Volumes/Docker
+
             - name: "Log in to Docker Hub"
               uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
               with:
