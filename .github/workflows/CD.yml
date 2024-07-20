@@ -32,13 +32,12 @@ jobs:
                 sudo /Volumes/Docker/Docker.app/Contents/MacOS/install --accept-license
                 sudo hdiutil detach /Volumes/Docker
                 echo "/Applications/Docker.app/Contents/Resources/bin" >> $GITHUB_PATH
-                open -a Docker
 
-#            - name: "Setup tmate session"
-#              uses: "mxschmitt/action-tmate@v3"
-#              if: "${{matrix.os == 'macos-14'}}"
-#              with:
-#                  limit-access-to-actor: true
+            - name: "Setup tmate session"
+              uses: "mxschmitt/action-tmate@v3"
+              if: "${{matrix.os == 'macos-14'}}"
+              with:
+                  limit-access-to-actor: true
 
             - name: "Log in to Docker Hub"
               uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
