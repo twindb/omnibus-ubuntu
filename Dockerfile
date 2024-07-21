@@ -28,10 +28,14 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
         libev-dev \
         vim-common \
         unzip \
-        ruby \
-        ruby-dev \
-        ruby-bundler \
         pkgconf; \
+    apt-get clean
+
+RUN curl -s https://packagecloud.io/install/repositories/instructure/insops/script.deb.sh | bash
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    ruby3.1-dev \
+    ruby3.1 \
+    ruby-bundler ; \
     apt-get clean
 
 RUN gem install omnibus
