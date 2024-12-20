@@ -1,7 +1,7 @@
-FROM ubuntu:noble
-MAINTAINER dev@twindb.com
+FROM ubuntu:oracular
+LABEL maintainer="dev@twindb.com"
 
-RUN apt-get update
+RUN apt-get  update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
         git \
         curl \
@@ -37,4 +37,4 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
 
 RUN gem install omnibus
 
-CMD /bin/bash -l
+CMD ["/bin/bash", "-l"]
